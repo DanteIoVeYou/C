@@ -9,4 +9,4 @@ int main()
 	//printf("2e-498 / 100 = %e\n",2e-500);
 	return 0;	
 }
-//If the num you enteris over the range , overflow or underflow it causes will be considered "wrong" by the compiler.
+//If the num you enter is over the range , overflow or underflow it causes will be considered "wrong" by the compiler.

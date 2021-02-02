@@ -1,0 +1,5 @@
+1.Some instructions of format specifiers
+	%d: integer
+	%u: unsigned integer
+	%a: hexadecimal
+	%e: scientific notation of floating-point values
