@@ -289,7 +289,7 @@ char Judge(char arr[ROW][COL], int row, int col)
 		if (arr[i - 1][col - 1] == '#' && arr[i][col - 1] == '#' && arr[i + 1][col - 1] == '#')
 			result = arr[i][col - 1];
 	}
-	//Comtinue chess.
+	//Continue chess.
 	if (result == 0) result = 'C';
 	return result;
 }
