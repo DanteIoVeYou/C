@@ -23,21 +23,21 @@ void game()
 	SetMine(situ);
 	//Display(situ, ROW, COL);
 	Display(show, ROW, COL);
-	Display(situ, ROW, COL);
+	//Display(situ, ROW, COL);
 	FindMine(situ,show);
 }
 
 void meau()
 {
 	int choose = 0;
-	printf(" Welcome to DanteKing's Mine-Sweeping\n");
-	printf("======================================\n");
-	printf("============1.start===================\n");
-	printf("============2.rule====================\n");
-	printf("============0.exit====================\n");
-	printf("======================================\n");
 	do
 	{
+		printf(" Welcome to DanteKing's Mine-Sweeping\n");
+		printf("======================================\n");
+		printf("============1.start===================\n");
+		printf("============2.rule====================\n");
+		printf("============0.exit====================\n");
+		printf("======================================\n");
 		printf("Please choose:>");
 		scanf("%d", &choose);
 		switch (choose)
