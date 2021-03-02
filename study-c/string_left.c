@@ -14,6 +14,7 @@ void reverse(char* arr, int n)
 		right--;
 	}
 }
+
 //左旋函数暴力求解法
 void left_move(char* arr, int n)
 {
