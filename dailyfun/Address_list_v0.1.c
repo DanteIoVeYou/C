@@ -244,7 +244,7 @@ void SortContact(struct Contact* pcon)
 		int j = 0;
 		for (int j = 0; j < pcon->size - 1 - i ; j++)
 		{
-			if (strcmp(pcon->data[j].name, pcon->data[j + 1].name))
+			if (strcmp(pcon->data[j].name, pcon->data[j + 1].name) > 0)
 			{
 				char tmp[NAME_MAX] = { 0 };
 				strcpy(tmp, pcon->data[j].name);
