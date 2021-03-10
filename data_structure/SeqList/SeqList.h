@@ -14,11 +14,12 @@ typedef struct{
 
 void SeqListPushBack(SeqList* ps, SeqListType x);   //头插
 void SeqListPushFront(SeqList* ps, SeqListType x);	//尾插
-void SeqListPopBack(SeqList* ps, SeqListType x);	//尾删
-void SeqListPopFront(SeqList* ps, SeqListType x);	//头删
+void SeqListPopBack(SeqList* ps);	//尾删
+void SeqListPopFront(SeqList* ps);	//头删
 void SeqListInsert(SeqList* ps, int pos, SeqListType x); //任意位置插入
-void SeqListErase(SeqList* ps, int pos, SeqListType x);//任意位置删除
+void SeqListErase(SeqList* ps, int pos);//任意位置删除
 void SeqListInit(SeqList* ps);
 void SeqListPrint(const SeqList* ps);
+void SeqListCheck(SeqList* ps);
 
 
