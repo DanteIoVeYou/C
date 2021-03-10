@@ -1,2 +1,1 @@
-。。   
-  。
+The directory is answer to C primer plus 6.
