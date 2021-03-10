@@ -6,17 +6,27 @@ void SeqListTest(SeqList* ps)
 	SeqListInit(ps);
 	SeqListPrint(ps);
 	SeqListPushFront(ps, 0);   //头插
+	SeqListPrint(ps);
+
 	SeqListPushBack(ps,1);   //尾插
+	SeqListPrint(ps);
+
 	SeqListPushBack(ps, 2);   //尾插
+	SeqListPrint(ps);
+
 	SeqListPushBack(ps, 3);   //尾插
+	SeqListPrint(ps);
+
 	SeqListPushBack(ps, 4);   //尾插
+	SeqListPrint(ps);
+
 	SeqListPopFront(ps);   //头删
-	SeqListInsert(ps,1,5);   //任意位置插入
+	SeqListPrint(ps);
 
+	SeqListInsert(ps,3,5);   //任意位置插入
+	SeqListPrint(ps);
 
-
-
-
+	SeqListErase(ps, 4);	//任意位置删除
 	SeqListPrint(ps);
 }
 

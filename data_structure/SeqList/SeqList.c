@@ -86,6 +86,12 @@ void SeqListInsert(SeqList* ps, int pos, SeqListType x)	//任意位置插入
 void SeqListErase(SeqList* ps, int pos)//任意位置删除
 {
 	assert(ps);
+	int i = 0;
+	for (i = 0; i < ps->size - pos; i++)
+	{
+		ps->arr[pos + i - 1] = ps->arr[pos + i];
+	}
+	ps->size--;
 }
 
 
