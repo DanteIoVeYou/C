@@ -71,9 +71,11 @@ void SeqListPopFront(SeqList* ps)	//头删
 	}
 	ps->size--;
 }
+
 void SeqListInsert(SeqList* ps, int pos, SeqListType x)	//任意位置插入
 {
 	assert(ps);
+	assert(pos <= ps->size && pos >= 0);
 	SeqListCheck(ps);
 	int i = 0;
 	for (i = 0; i < ps->size - pos + 1; i++)
@@ -83,15 +85,29 @@ void SeqListInsert(SeqList* ps, int pos, SeqListType x)	//任意位置插入
 	ps->arr[pos - 1] = x;
 	ps->size++;
 }
+
 void SeqListErase(SeqList* ps, int pos)//任意位置删除
 {
 	assert(ps);
+	assert(pos <= ps->size && pos>=0);
 	int i = 0;
 	for (i = 0; i < ps->size - pos; i++)
 	{
 		ps->arr[pos + i - 1] = ps->arr[pos + i];
 	}
 	ps->size--;
+}
+
+int SeqListFind(SeqList* ps, int x)
+{
+	assert(ps);
+	int i = 0;
+	for (i = 0; i < ps->size; i++)
+	{
+		if (ps->arr[i] == x)
+			return i;
+	}
+	return -1;
 }
 
 

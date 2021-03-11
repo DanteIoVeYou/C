@@ -8,8 +8,8 @@
 typedef int SeqListType;	//make elements in SeqList easy to modify
 typedef struct{
 	SeqListType arr[INIT_CAPACITY];
-	int size;
-	int capacity;
+	size_t size;
+	size_t capacity;
 }SeqList;					//Define a sequnece-list.
 
 void SeqListPushBack(SeqList* ps, SeqListType x);   //头插
@@ -21,5 +21,6 @@ void SeqListErase(SeqList* ps, int pos);//任意位置删除
 void SeqListInit(SeqList* ps);
 void SeqListPrint(const SeqList* ps);
 void SeqListCheck(SeqList* ps);
+int SeqListFind(SeqList* ps, int x);	//查找一个数 x
 
 

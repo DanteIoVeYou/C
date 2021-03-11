@@ -26,7 +26,11 @@ void SeqListTest(SeqList* ps)
 	SeqListInsert(ps,3,5);   //任意位置插入
 	SeqListPrint(ps);
 
-	SeqListErase(ps, 4);	//任意位置删除
+	int ret = SeqListFind(ps, 4);
+	{
+		if(ret != NULL)
+			SeqListErase(ps, ret + 1);	//任意位置删除
+	}
 	SeqListPrint(ps);
 }
 
