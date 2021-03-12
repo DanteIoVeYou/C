@@ -1,1 +1,2 @@
-The directory is answer to C primer plus 6
+The directory is answer to C primer plus 6.
+This respository lasts renewing from time to time.
