@@ -91,26 +91,31 @@
 
 
 //µİ¹éÊµÏÖ×Ö·û´®µÄÄæĞò
-void reverse_string(char* string)
+int my_strlen(const char* arr)
 {
 	int count = 0;
-	while (*string)
-	{
+	while (*(arr++))
 		count++;
-	}
-	if (string < string + (count + 1) / 2)
+	return count;
+}
+void reverse_string(char* string)
+{
+	int len = my_strlen(string);
+	if (len > 1)
 	{
+		int tmp = *string;
+		*string = *(string + len - 1);
+		*(string + len - 1) = '\0';
 		reverse_string(string + 1);
+		*(string + len - 1) = tmp;
 	}
-	char tmp = *string;
-	*string = *(string + count - 1);
-	*(string + count - 1) = tmp;
-	
 }
 #include<stdio.h>
 int main()
 {
-	int arr[] = "abcdef";
+	char arr[] = "abcdef";
+	printf("%s", arr);
+	printf("\n");
 	reverse_string(arr);
 	printf("%s", arr);
 	return 0;
