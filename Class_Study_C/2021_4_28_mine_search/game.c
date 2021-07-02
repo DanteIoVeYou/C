@@ -1,5 +1,32 @@
 #define _CRT_SECURE_NO_WARNINGS 1
 #include "game.h"
+void ShowNum(char mine[ROWS][COLS], char show[ROWS][COLS], int* pcount, int  x, int y)
+{
+	if (mine[x - 1][y - 1] +
+		mine[x - 1][y] +
+		mine[x - 1][y + 1] +
+		mine[x][y - 1] +
+		mine[x][y + 1] +
+		mine[x + 1][y - 1] +
+		mine[x + 1][y] +
+		mine[x + 1][y + 1] == 8 * '0' && x >= 1 && x <= ROW && y >= 1 && y <= COL && mine[x][y] != '1')
+	{
+		ShowNum(mine, show, pcount, x - 1, y - 1);
+		ShowNum(mine, show, pcount, x - 1, y);
+		ShowNum(mine, show, pcount, x - 1, y + 1);
+		ShowNum(mine, show, pcount, x, y - 1);
+		ShowNum(mine, show, pcount, x, y + 1);
+		ShowNum(mine, show, pcount, x + 1, y - 1);
+		ShowNum(mine, show, pcount, x + 1, y);
+		ShowNum(mine, show, pcount, x + 1, y + 1);
+	}
+	else
+	{
+		show[x][y] = CountMine(mine, x, y) + '0';
+		(*pcount)--;
+	}
+}
+
 int CountMine(char mine[ROWS][COLS], int x, int y)
 {
 	return mine[x - 1][y - 1] +
@@ -70,6 +97,7 @@ void SearchMine(char mine[ROWS][COLS], char show[ROWS][COLS], int row, int col)
 	int x = 0;
 	int y = 0;
 	int count = ROW * COL- MINE;
+	int* pcount = &count;
 	while (count)
 	{
 		DisPlay(show, ROW, COL);
@@ -77,8 +105,7 @@ void SearchMine(char mine[ROWS][COLS], char show[ROWS][COLS], int row, int col)
 		scanf("%d%d", &x, &y);
 		if (x >= 1 && x <= ROW && y >= 1 && y <= COL && mine[x][y] != '1')
 		{
-			show[x][y] = CountMine(mine, x, y) + '0';
-			count--;
+			ShowNum(mine, show, pcount, x, y);
 		}
 		else
 		{
