@@ -1,5 +1,6 @@
 #define _CRT_SECURE_NO_WARNINGS 1
 #include "game.h"
+
 void ShowNum(char mine[ROWS][COLS], char show[ROWS][COLS], int* pcount, int  x, int y)
 {
 	if (mine[x - 1][y - 1] +
