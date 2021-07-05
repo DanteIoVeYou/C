@@ -44,12 +44,20 @@ int main()
 		meau();
 		printf("Please input:>");
 		scanf("%d", &input);
-		if (input)
+		if (input>=1&&input<=4)
 		{
 			int x = 0;
 			int y = 0;
 			scanf("%d%d", &x, &y);
 			printf("%d\n", arr[input](x, y));
+		}
+		else if (input == 0)
+		{
+			;
+		}
+		else
+		{
+			printf("Input again!\n");
 		}
 	} while (input);
 	return 0;
