@@ -35,7 +35,7 @@ int Div(int x, int y)
 {
 	return 1.0*x / y;
 }
-int (*arr[5])(int x, int y) = { 0,Add,Sub,Mul,Div };
+int (*arr[5])(int x, int y) = { NULL,Add,Sub,Mul,Div };
 
 int main()
 {
