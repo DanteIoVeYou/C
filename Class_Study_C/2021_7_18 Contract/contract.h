@@ -17,7 +17,8 @@ enum Fun
 	search,
 	modify,
 	show,
-	sort
+	sort,
+	clear
 };
 
 typedef struct linkman

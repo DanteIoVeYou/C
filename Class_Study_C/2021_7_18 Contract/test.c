@@ -7,7 +7,7 @@ void meau()
 	printf("***********1.Add             2.Delete**********\n");
 	printf("***********3.Search          4.Modify**********\n");
 	printf("***********5.Show            6.Sort  **********\n");
-	printf("***********0.Exit                    **********\n");
+	printf("***********7.Clear           0.Exit  **********\n");
 	printf("***********************************************\n");
 
 }
@@ -40,6 +40,10 @@ int main()
 			break;
 		case sort:
 			SortCon(&contract);
+			break;
+		case clear:
+			InitCon(&contract);
+			printf("清空通讯录成功！\n");
 			break;
 		case quit:
 			printf("退出成功！\n");
