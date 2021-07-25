@@ -15,7 +15,8 @@ enum Fun
 	delete,
 	search,
 	modify,
-	show
+	show,
+	sort
 };
 
 typedef struct linkman
@@ -36,6 +37,10 @@ typedef struct Contract
 
 void InitCon(Contract* ptr);
 void Add(Contract* ptr);
-void ShowCon(Contract* ptr);
+void ShowCon(const Contract* ptr);
+int SearchConByname(const Contract* ptr);
+void DeleteCon(Contract* ptr);
+void ModifyCon(Contract* ptr);
+void SearchCon(const Contract* ptr);
 
 
