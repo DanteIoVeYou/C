@@ -2,6 +2,7 @@
 
 #include<stdio.h>
 #include<string.h>
+#include<stdlib.h>
 
 #define Max_Name 30
 #define Max_Sex 6
@@ -10,7 +11,7 @@
 #define Max_PeoNum 1000
 enum Fun
 {
-	exit,
+	quit,
 	add,
 	delete,
 	search,
@@ -42,5 +43,6 @@ int SearchConByname(const Contract* ptr);
 void DeleteCon(Contract* ptr);
 void ModifyCon(Contract* ptr);
 void SearchCon(const Contract* ptr);
+void SortCon(Contract* ptr);
 
 

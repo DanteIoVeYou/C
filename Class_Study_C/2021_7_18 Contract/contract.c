@@ -2,7 +2,16 @@
 #include"contract.h"
 void InitCon(Contract* ptr)
 {
-	memset(ptr, 0, sizeof(int) + sizeof(linkman) * Max_PeoNum);
+	if (ptr == NULL)
+	{
+		printf("创建通讯录失败！\n");
+		return;
+	}
+	else
+	{
+		memset(ptr, 0, sizeof(int) + sizeof(linkman) * Max_PeoNum);
+
+	}
 }
 void Add(Contract* ptr)
 {
@@ -67,7 +76,8 @@ void DeleteCon(Contract* ptr)
 	else
 	{
 		int i = 0;
-		for (i = 0; i < ptr->num - ret - 2; i++)
+		printf("%d\n", ret);
+		for (i = 0; i < ptr->num - ret - 1  ; i++)
 		{
 			ptr->data[ret + i] = ptr->data[ret + i + 1];
 		}
@@ -85,6 +95,7 @@ void ModifyCon(Contract* ptr)
 	}
 	else
 	{
+		printf("请输入新信息:>\n");
 		scanf("%s", ptr->data[ret].name);
 		scanf("%s", ptr->data[ret].sex);
 		scanf("%d", &(ptr->data[ret].age));
@@ -93,3 +104,33 @@ void ModifyCon(Contract* ptr)
 		printf("修改联系人成功！\n");
 	}
 }
+int SortByName(const void* e1,const void* e2)
+{
+	return strcmp((*(linkman*)e1).name, (*(linkman*)e2).name);
+}
+int SortByAge(const void* e1, const void* e2)
+{
+	return (*(linkman*)e1).age - (*(linkman*)e2).age;
+}
+void SortCon(Contract* ptr)
+{
+	int choose = 0;
+	printf("1.按照姓名排序\n2.按照年龄排序\n");
+	printf("请选择排序方式:>");
+	scanf("%d", &choose);
+	switch(choose)
+	{
+	case 1:
+		qsort(ptr->data, ptr->num, sizeof(ptr->data[0]), SortByName);
+		printf("排序成功！\n");
+		break;
+	case 2:
+		qsort(ptr->data, ptr->num, sizeof(ptr->data[0]), SortByAge);
+		printf("排序成功！\n");
+		break;
+	default:
+		printf("输入有误！\n");
+		break;
+	}
+}
+

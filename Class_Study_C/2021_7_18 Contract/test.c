@@ -39,8 +39,9 @@ int main()
 			ShowCon(&contract);
 			break;
 		case sort:
+			SortCon(&contract);
 			break;
-		case exit:
+		case quit:
 			printf("ÍË³ö³É¹¦£¡\n");
 			break;
 		default:
