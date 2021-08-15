@@ -2,32 +2,90 @@
 #include"contract.h"
 void InitCon(Contract* ptr)
 {
-	if (ptr == NULL)
+	ptr->data = (linkman*)malloc(3 * sizeof(linkman));
+	if (ptr->data == NULL)
 	{
-		printf("创建通讯录失败！\n");
+		perror("InitCon");
 		return;
 	}
 	else
 	{
-		memset(ptr, 0, sizeof(int) + sizeof(linkman) * Max_PeoNum);
+		ptr->capacity = ININUM;
+		ptr->num = 0;
 	}
 }
-void Add(Contract* ptr)
+void AddCon2(Contract* ptr)
 {
-	if (ptr->num == Max_PeoNum)
+	FILE* pf = fopen("contract.txt", "w");
+	if (pf == NULL)
 	{
-		printf("联系人已满，无法添加。\n");
+		perror("fopen");
+		return;
 	}
-	else
+	if (ptr->num == ptr->capacity)
 	{
-		scanf("%s", ptr->data[ptr->num].name);
-		scanf("%s", ptr->data[ptr->num].sex);
-		scanf("%d", &(ptr->data[ptr->num].age));
-		scanf("%s", ptr->data[ptr->num].tel);
-		scanf("%s", ptr->data[ptr->num].addr);
-		ptr->num++;
-		printf("添加联系人成功\n");
+		linkman* tmpptr = (linkman*)realloc(ptr->data, sizeof(linkman) * (ptr->capacity + ININUM));
+		if (tmpptr != NULL)
+		{
+			ptr->data = tmpptr;
+			ptr->capacity += ININUM;
+			tmpptr = NULL;
+		}
+		else
+		{
+			perror("AddCon");
+			printf("添加联系人失败！\n");
+			return;
+		}
 	}
+	scanf("%s", ptr->data[ptr->num].name);
+	scanf("%s", ptr->data[ptr->num].sex);
+	scanf("%d", &(ptr->data[ptr->num].age));
+	scanf("%s", ptr->data[ptr->num].tel);
+	scanf("%s", ptr->data[ptr->num].addr);
+	fwrite(&(ptr->data[ptr->num]), sizeof(linkman), 1, pf);
+	ptr->num++;
+	printf("添加联系人成功\n");
+	fclose(pf);
+	pf = NULL;
+}
+void AddCon(Contract* ptr)
+{
+	CheckCapacity(ptr);
+	scanf("%s", ptr->data[ptr->num].name);
+	scanf("%s", ptr->data[ptr->num].sex);
+	scanf("%d", &(ptr->data[ptr->num].age));
+	scanf("%s", ptr->data[ptr->num].tel);
+	scanf("%s", ptr->data[ptr->num].addr);
+	ptr->num++;
+	printf("添加联系人成功\n");
+}
+void ShowCon2(const Contract* ptr)
+{
+	FILE* pf = fopen("contract.txt", "r");
+	if (pf == NULL)
+	{
+		perror("fopen");
+		return;
+	}
+	printf("序号\t姓名\t性别\t年龄\t住址\t电话\n");
+	int i = 0;
+	for (i = 0; i < ptr->num; i++)
+	{
+		fread(&(ptr->data[i]), sizeof(linkman), 1, pf);
+	}
+	for (i = 0; i < ptr->num; i++)
+	{
+		printf("%d\t", i + 1);
+		printf("%s\t", ptr->data[i].name);
+		printf("%s\t", ptr->data[i].sex);
+		printf("%d\t", (ptr->data[i].age));
+		printf("%s\t", ptr->data[i].tel);
+		printf("%s", ptr->data[i].addr);
+		printf("\n");
+	}
+	fclose(pf);
+	pf = NULL;
 }
 void ShowCon(const Contract* ptr)
 {
@@ -139,4 +197,64 @@ void SortCon(Contract* ptr)
 		break;
 	}
 }
+void DestroyCon(Contract* ptr)
+{
+	free(ptr->data);
+	ptr->data = NULL;
+	ptr->capacity = 0;
+	ptr->num = 0;
+}
+void SaveCon(Contract* ptr)
+{
+	FILE* pf = fopen("contract.txt", "w");
+	if (pf == NULL)
+	{
+		perror(fopen);
+		return;
+	}
+	int i = 0;
+	for (i = 0; i < ptr->num; i++)
+	{
+		fwrite(&ptr->data[i], sizeof(linkman), 1, pf);
+	}
+	fclose(pf);
+	pf = NULL;
+}
 
+void LoadCon(Contract* ptr)
+{
+	FILE* pf = fopen("contract.txt", "r");
+	if (pf == NULL)
+	{
+		perror(fopen);
+		return;
+	}
+	linkman tmplinkman = { 0 };
+	while (fread(&tmplinkman,sizeof(linkman),1,pf))
+	{
+		CheckCapacity(ptr);
+		ptr->data[ptr->num] = tmplinkman;
+		ptr->num++;
+	}
+	fclose(pf);
+	pf = NULL;
+}
+void CheckCapacity(Contract* ptr)
+{
+	if (ptr->capacity == ptr->num)
+	{
+		linkman* tmpptr = (linkman*)realloc(ptr->data, (ptr->capacity + INCNUM) * sizeof(linkman));
+		if (tmpptr != NULL)
+		{
+			ptr->data = tmpptr;
+			ptr->capacity += INCNUM;
+			tmpptr = NULL;
+		}
+		else
+		{
+			perror("AddCon");
+			printf("添加联系人失败！\n");
+			return;
+		}
+	}
+}

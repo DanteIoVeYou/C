@@ -15,16 +15,16 @@ int main()
 {
 	Contract contract;
 	InitCon(&contract);
+	LoadCon(&contract);
 	int input = 0;
 	do {
 		meau();
-		int SearchRet = 0;
 		printf("请选择:>");
 		scanf("%d", &input);
 		switch (input)
 		{
 		case add:
-			Add(&contract);
+			AddCon(&contract);
 			break;
 		case delete:
 			DeleteCon(&contract);
@@ -46,6 +46,8 @@ int main()
 			printf("清空通讯录成功！\n");
 			break;
 		case quit:
+			//DestroyCon(&contract);
+			SaveCon(&contract);
 			printf("退出成功！\n");
 			break;
 		default:
